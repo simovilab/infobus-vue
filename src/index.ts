@@ -4,6 +4,7 @@ import InfobusRouteMap from './components/InfobusRouteMap.vue'
 import { useInfobusApi } from './composables/useInfobusApi'
 import { useNextTrips } from './composables/useNextTrips'
 import { useRouteShapes } from './composables/useRouteShapes'
+import StopTimesFetcher from './components/StopTimesFetcher.vue'
 
 export type {
   NextTrip,
@@ -25,5 +26,6 @@ export default {
   install(app: App) {
     app.component('InfobusNextTrips', InfobusNextTrips)
     app.component('InfobusRouteMap', InfobusRouteMap)
+    app.component('StopTimesFetcher', StopTimesFetcher)
   }
 }
