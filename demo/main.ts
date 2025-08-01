@@ -1,11 +1,13 @@
 import { createApp, ref, computed } from 'vue'
 import InfobusVue from '../src/index'
+import StopTimesFetcher from '../src/components/StopTimesFetcher.vue'
+
 import type { InfobusApiConfig, NextTrip, RouteShape } from '../src/types'
 
 const app = createApp({
   setup() {
     const config = ref({
-      baseUrl: 'https://api.infobus.example.com',
+      baseUrl: 'https://infobus.bucr.digital/api/',
       apiKey: '',
       timeout: 10000
     })
@@ -46,19 +48,19 @@ const app = createApp({
 
     return {
       config,
+      apiConfig,
       nextTripsStopId,
       nextTripsRouteId,
       routeMapRouteId,
-      apiConfig,
       updateConfig,
       refreshNextTrips,
       loadRouteMap,
       onTripsLoaded,
       onRouteShapesLoaded,
       onError
+
     }
   }
 })
-
 app.use(InfobusVue)
 app.mount('#app')
