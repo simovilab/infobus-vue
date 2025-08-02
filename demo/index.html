@@ -85,6 +85,7 @@
   </style>
 </head>
 <body>
+
   <div id="app">
     <div class="container">
       <h1>Infobus Vue Components Demo</h1>
@@ -150,6 +151,10 @@
         />
       </div>
       
+      <h1> Test </h1>
+      <stop-times-fetcher :config="apiConfig"/>
+
+
       <div class="demo-section">
         <h2>InfobusRouteMap Component</h2>
         <p>Shows route shapes on a map:</p>
@@ -166,6 +171,7 @@
           <button @click="loadRouteMap">Load Route Map</button>
         </div>
         
+
         <infobus-route-map
           v-if="routeMapRouteId"
           :route-id="routeMapRouteId"
@@ -175,6 +181,9 @@
           @route-shapes-loaded="onRouteShapesLoaded"
           @error="onError"
         />
+
+        
+
       </div>
     </div>
   </div>
