@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="infobus-next-trips">
     <h2>Test: Stop Times</h2>
     <div class="config-form">
       <label for="tripId">Trip ID:</label>
@@ -71,8 +71,16 @@ async function fetchStopTimes() {
 }
 </script>
 
-
 <style scoped>
+.infobus-next-trips {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
 .config-form {
   margin-bottom: 20px;
 }
@@ -80,15 +88,47 @@ async function fetchStopTimes() {
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border: 1px solid #dee2e6;
+  padding: 10px;
   text-align: left;
 }
 
 th {
+  background-color: #e9ecef;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 </style>
