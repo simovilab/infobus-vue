@@ -7,7 +7,39 @@
 
       <button @click="fetchStopTimes">Fetch Stop Times</button>
     </div>
-    <pre>{{ output }}</pre>
+    <div v-if="tableData.length">
+      <table>
+        <thead>
+          <tr>
+            <th>Trip ID</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <th>Stop ID</th>
+            <th>Stop Sequence</th>
+            <th>Stop Headsign</th>
+            <th>Pickup Type</th>
+            <th>Drop Off Type</th>
+            <th>Shape Dist Traveled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, idx) in tableData" :key="idx">
+            <td>{{ row.trip_id }}</td>
+            <td>{{ row.arrival_time }}</td>
+            <td>{{ row.departure_time }}</td>
+            <td>{{ row.stop_id }}</td>
+            <td>{{ row.stop_sequence }}</td>
+            <td>{{ row.stop_headsign }}</td>
+            <td>{{ row.pickup_type }}</td>
+            <td>{{ row.drop_off_type }}</td>
+            <td>{{ row.shape_dist_traveled }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-else>
+      <span v-if="output">{{ output }}</span>
+    </div>
   </div>
 </template>
 
@@ -16,6 +48,7 @@ import { ref } from 'vue'
 
 const tripId = ref('')
 const output = ref('')
+const tableData = ref<any[]>([])
 
 // Mocked API response
 const mockStopTimes = [
@@ -68,15 +101,39 @@ const mockStopTimes = [
 async function fetchStopTimes() {
   if (!tripId.value) {
     // Return all entries if no Trip ID is entered
-    output.value = JSON.stringify(mockStopTimes, null, 2)
+    tableData.value = mockStopTimes
+    output.value = ''
     return
   }
 
   try {
     const data = mockStopTimes.filter(entry => entry.trip_id === tripId.value)
-    output.value = JSON.stringify(data, null, 2)
+    tableData.value = data
+    output.value = data.length === 0 ? 'No results found.' : ''
   } catch (e: any) {
+    tableData.value = []
     output.value = `Error: ${e.message || e}`
   }
 }
 </script>
+
+<style scoped>
+.config-form {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+</style>
