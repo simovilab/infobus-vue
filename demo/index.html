@@ -170,6 +170,14 @@
           <button @click="loadRouteMap">Load Route Map</button>
         </div>
         
+        <!-- To know what are the options to place in the "Route ID" box, check the console and look for entries containing "Looping thru parsedRoutes, name of discovered route: bUCR_L1__hacia_artes", the actual full list of available routes is the following -->
+        <!-- bUCR_L1__desde_educacion_sin_milla
+              bUCR_L2__desde_educacion_con_milla
+              bUCR_L1__desde_artes_sin_milla
+              bUCR_L2__desde_artes_con_milla
+              bUCR_L1__hacia_educacion
+              bUCR_L1__hacia_artes
+              -->
         <infobus-route-map
           v-if="routeMapRouteId"
           :route-id="routeMapRouteId"
